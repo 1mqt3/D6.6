@@ -1,0 +1,18 @@
+{% extends 'news/default.html' %}
+
+{% load custom_filter %}
+
+{% block title %}Новости на сайте{% endblock %}
+
+{% block content %}
+    <div class="features">
+        <h1>Новости на сайте</h1>
+            {% for el in posts %}
+            <div class="alert alert-warning">
+                <h3>{{ el.title|censor }}</h3>
+                <p>{{ el.text|linebreaks|truncatewords:50|censor }}</p>
+                <a href="{% url 'news-detail' el.id %}" class="btn btn-warning"> Читать статью</a>
+            </div>
+            {% endfor %}
+    </div>
+{% endblock %}
